@@ -1,0 +1,19 @@
+py manage.py makemigrations
+py manage.py migrate
+py manage.py runserver
+venv\Scripts\activate
+
+
+python manage.py startapp polls
+py manage.py createsuperuser
+pip install djangorestframework
+
+
+docker:
+docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=root postgres:13-alpine
+psql -U postgres
+create database master;
+\c master
+
+show table:
+\dt

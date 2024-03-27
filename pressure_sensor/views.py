@@ -13,6 +13,13 @@ from rest_framework.decorators import api_view
 class PressureSensorViewSet(viewsets.ViewSet):
 
     def list(self, request):
+        queryset =Pressure_Sensor.objects.all()
+        serializer =Pressure_Sensor_Serializers(queryset, many=True)
+        return Response(serializer.data)
+
+class PressureSensorViewSet(viewsets.ViewSet):
+
+    def list(self, request):
         queryset = Pressure_Sensor.objects.all()
         serializer = Pressure_Sensor_Serializers(queryset, many=True)
         return Response(serializer.data)

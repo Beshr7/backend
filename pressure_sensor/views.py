@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Pressure_Sensor,Pressure_Reading
+from .models import Pressure_Sensor, Pressure_Reading
 from .serializers import Pressure_Sensor_Serializers, Pressure_Reading_Serializers
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
@@ -9,13 +9,13 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-class PressureSensorViewSet(viewsets.ViewSet):
-    
-    def list(self, request):
-        queryset =Pressure_Sensor.objects.all()
-        serializer =Pressure_Sensor_Serializers
-        return Response(serializer.data)
 
+class PressureSensorViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        queryset = Pressure_Sensor.objects.all()
+        serializer = Pressure_Sensor_Serializers(queryset, many=True)
+        return Response(serializer.data)
 
 
 def Pressure_SensorHTTPView(request):
@@ -23,10 +23,9 @@ def Pressure_SensorHTTPView(request):
 
     return HttpResponse(Pressure_Sensors)
 
-    
 
 class Pressure_ReadingView(generics.ListCreateAPIView):
-     # def Reading_Filter():
+    # def Reading_Filter():
     #     filtered_readings = []
     #     from_date = timezone.make_aware(datetime(2020, 1, 1), timezone=timezone.utc)
     #     to_date = timezone.make_aware(datetime(2020, 12, 31), timezone=timezone.utc)

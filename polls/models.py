@@ -16,7 +16,7 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, null=True, on_delete=models.PROTECT)
 
     def __str__(self):
-        return self.label
+        return self.FirstChoice
 
 
 # class ModelB(models.Model):

@@ -1,13 +1,15 @@
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.db import models
 from datetime import datetime, date
+from django.db.models import Model
 from django.utils.dateparse import parse_date
 from django.core.exceptions import ValidationError
+from django.contrib.contenttypes.models import ContentType
+
 
 class Pressure_Sensor(models.Model):
     label = models.CharField(max_length=200, default="default")
-    installation_date = models.DateTimeField(
-        "installation date"
-    )
+    installation_date = models.DateTimeField("installation date")
     latitude = models.IntegerField(default=0)
     longitude = models.IntegerField(default=0)
     serial_number = models.CharField(max_length=200, unique=True)

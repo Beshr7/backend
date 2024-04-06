@@ -9,14 +9,21 @@ class Question(models.Model):
         default=datetime.now(),
     )
 
+    # choices = models.ManyToManyField(Choice)
+
 
 class Choice(models.Model):
     FirstChoice = models.CharField(max_length=200, default="First")
     SecChoice = models.CharField(max_length=200, default="Sec")
-    question = models.ForeignKey(Question, null=True, on_delete=models.PROTECT)
+    question = models.ManyToManyField(Question, through="QuestionChoices")
 
     def __str__(self):
         return self.FirstChoice
+
+
+class QuestionChoices(models.Model):
+    choice = models.ForeignKey(Choice, on_delete=models.PROTECT)
+    question = models.ForeignKey(Question, on_delete=models.PROTECT)
 
 
 # class ModelB(models.Model):

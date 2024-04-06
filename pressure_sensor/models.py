@@ -1,7 +1,11 @@
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.db import models
 from datetime import datetime, date
+from django.db.models import Model
 from django.utils.dateparse import parse_date
 from django.core.exceptions import ValidationError
+from django.contrib.contenttypes.models import ContentType
+
 
 class Pressure_Sensor(models.Model):
     label = models.CharField(max_length=200, default="default")
@@ -33,3 +37,5 @@ class Pressure_Reading(models.Model):
 
     def __str__(self):
         return self.label
+
+

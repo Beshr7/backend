@@ -1,7 +1,7 @@
 py manage.py makemigrations
 py manage.py migrate
 py manage.py runserver
-../my_venv\Scripts\activate
+venv\Scripts\activate
 
 
 python manage.py startapp polls

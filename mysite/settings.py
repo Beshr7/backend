@@ -39,12 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     'rest_framework',
     'django_filters',
     'pressure_sensor',
     "polls",
+    "fl_tag"
+
 ]
-    # "pressure_sensor.apps.PressureSensorConfig",
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

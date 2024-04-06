@@ -3,6 +3,7 @@ from .models import Pressure_Sensor, Pressure_Reading
 
 
 class Pressure_Sensor_Serializers(serializers.ModelSerializer):
+    latitude = serializers.IntegerField(read_only=True)
     class Meta:
         model = Pressure_Sensor
         fields = ("id", "label", "installation_date", "latitude", "longitude")

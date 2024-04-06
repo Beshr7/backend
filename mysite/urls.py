@@ -10,5 +10,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/", include("pressure_sensor.urls")),
     path("api2/", include("polls.urls")),
-    path('', include(router.urls)),
+    # path('', include(router.urls)),
 ]

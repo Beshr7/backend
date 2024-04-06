@@ -1,21 +1,28 @@
 from django.contrib import admin
-from .models import Choice, Question
+from .models import Choice, Question, QuestionChoices
 
 
-class ChoiceInline(admin.TabularInline):
-    model = Choice
+class QuestionChoicesInline(admin.TabularInline):
+    model = QuestionChoices
 
 
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [
-        ChoiceInline,
+        QuestionChoicesInline,
     ]
     extra = 2
 
 
-admin.site.register(Choice)
-admin.site.register(Question, QuestionAdmin)
+class ChoiceAdmin(admin.ModelAdmin):
 
+    class Meta:
+        model = Choice
+        fields = "__all__"
+
+
+# admin.site.register(QuestionChoices)
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Choice, ChoiceAdmin)
 
 # class QuestionAdmin(admin.ModelAdmin):
 #     list_display = ("questionText", "getChoice")

@@ -11,9 +11,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 
-class PressureSensorViewSet(
-    viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin
-):
+class PressureSensorViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin):
     queryset = Pressure_Sensor.objects.all()
     serializer_class = Pressure_Sensor_Serializers
 

@@ -20,3 +20,6 @@ create database master;
 
 show table:
 \dt
+
+tests:
+py manage.py test pressure_sensor

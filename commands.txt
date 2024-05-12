@@ -2,6 +2,9 @@ py manage.py makemigrations
 py manage.py migrate
 py manage.py runserver
 venv\Scripts\activate
+py manage.py makemigrations pressure_sensor --empty
+python manage.py showmigrations
+
 
 
 python manage.py startapp polls

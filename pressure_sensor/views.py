@@ -11,7 +11,9 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 
 
-class PressureSensorViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin):
+class PressureSensorViewSet(
+    viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin
+):
     queryset = Pressure_Sensor.objects.all()
     serializer_class = Pressure_Sensor_Serializers
 
@@ -21,7 +23,6 @@ class PressureSensorViewSet2(viewsets.ViewSet):
     def list(self, request):
         queryset = Pressure_Sensor.objects.all()
         serializer = Pressure_Sensor_Serializers(queryset, many=True)
-
         return Response(serializer.data)
 
     @csrf_exempt

@@ -27,6 +27,7 @@ class Pressure_Reading(models.Model):
     label = models.CharField(max_length=200, default="default")
     date_time = models.DateTimeField("installation date")
     value = models.FloatField(default=0.00)
+    row_value = models.FloatField(default=0.00)
     sensor_id = models.ForeignKey(
         "Pressure_Sensor",
         verbose_name="Sensor ID",

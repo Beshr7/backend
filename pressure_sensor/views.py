@@ -10,7 +10,8 @@ from .filters import PressureReadingFilterSet
 from rest_framework import viewsets
 from rest_framework.response import Response
 import logging
-logging.basicConfig(level=logging.WARNING)
+
+logger = logging.getLogger(__name__)
 
 class PressureSensorViewSet(
     viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin
@@ -18,20 +19,9 @@ class PressureSensorViewSet(
     queryset = Pressure_Sensor.objects.all()
     serializer_class = Pressure_Sensor_Serializers
 
-    logging.basicConfig(level=logging.WARNING)
 
-    def hypotenuse(a, b):
-        """Compute the hypotenuse"""
-        return (a ** 2 + b ** 2) ** 0.5
 
-    logging.info("here---------------------")
 
-    kwargs = {"a": 3, "b": 4, "c": hypotenuse(3, 4)}
-    logging.debug("a = {a}, b = {b}".format(**kwargs))
-    logging.info("Hypotenuse of {a}, {b} is {c}".format(**kwargs))
-    logging.warning("a={a} and b={b} are equal".format(**kwargs))
-    logging.error("a={a} and b={b} cannot be negative".format(**kwargs))
-    logging.critical("Hypotenuse of {a}, {b} is {c}".format(**kwargs))
 
 
 class PressureSensorViewSet2(viewsets.ViewSet):
@@ -86,3 +76,11 @@ class Pressure_ReadingView(generics.ListCreateAPIView):
     # to add filter button in api page
     filter_backends = [DjangoFilterBackend]
     filterset_class = PressureReadingFilterSet
+
+    def get(self, request, *args, **kwargs):
+        logger.info("Pressure_ReadingView: GET request received")
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        logger.info("Pressure_ReadingView: POST request received with data %s", request.data)
+        return super().post(request, *args, **kwargs)

@@ -7,6 +7,10 @@ class Pressure_Sensor_Class(admin.ModelAdmin):
     list_display = ("id", "label", "installation_date", "latitude", "longitude")
     readonly_fields = ["serial_number"]
 
+
+
+
+
     def save_model(self, *args, **kwargs):
         if not self.serial_number:
             # Generate a random string

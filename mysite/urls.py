@@ -9,5 +9,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("pressure_sensor.urls")),
     path("api2/", include("polls.urls")),
+    path("api/", include("greeting_app.urls")),
+
     # path('', include(router.urls)),
 ]

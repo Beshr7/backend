@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "polls",
     "fl_tag",
     "jsoneditor",
-    "django_seed"
+    "django_seed",
+    "greeting_app"
 ]
 
 
@@ -139,7 +140,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",)
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',  # Use session-based authentication
+        'rest_framework.authentication.BasicAuthentication',   # Use basic authentication
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',  # Authenticated users can read and write, others can only read
+    ],
 }
 
 import os
@@ -163,3 +170,6 @@ LOGGING = {
         },
     },
 }
+
+LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = '/'

@@ -46,11 +46,14 @@ INSTALLED_APPS = [
     "fl_tag",
     "jsoneditor",
     "django_seed",
-    "greeting_app"
+    "greeting_app",
+    "django_tenants",
+    "tenants"
 ]
 
 
 MIDDLEWARE = [
+    "django_tenants.middleware.TenantMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -87,7 +90,7 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django_tenants.postgresql_backend",
         "NAME": "master",
         "PASSWORD": "root",
         "USER": "postgres",
@@ -96,6 +99,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django_tenants.postgresql_backend',
+#         # ..
+#     }
+# }
+#
+#
+DATABASE_ROUTERS = (
+    'django_tenants.routers.TenantSyncRouter',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -173,3 +187,19 @@ LOGGING = {
 
 LOGIN_URL = '/admin/login/'
 LOGIN_REDIRECT_URL = '/'
+
+TENANT_MODEL = "tenants.Client"  # Adjust based on your model
+TENANT_DOMAIN_MODEL = "tenants.Domain"
+TENANT_APPS = (
+    'tenants',
+)
+SHARED_APPS = (
+    'django_tenants',
+    'tenants',
+    'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
+)

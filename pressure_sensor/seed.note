@@ -1,0 +1,16 @@
+python manage.py shell
+
+from django_seed import Seed
+from pressure_sensor.models import Pressure_Reading, Pressure_Sensor
+
+seeder = Seed.seeder()
+
+seeder.add_entity(Pressure_Reading, 10, {
+    'label': lambda x: seeder.faker.word(),
+    'date_time': lambda x: seeder.faker.date_time(),
+    'value': lambda x: seeder.faker.random_number(digits=5, fix_len=True) / 100,
+    'row_value': lambda x: seeder.faker.random_number(digits=5, fix_len=True) / 100,
+    'sensor_id': lambda x: Pressure_Sensor.objects.order_by('?').first(),
+})
+
+inserted_pks = seeder.execute()

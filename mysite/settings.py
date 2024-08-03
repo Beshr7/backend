@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "pressure_sensor",
     "polls",
     "fl_tag",
-    "jsoneditor"
+    "jsoneditor",
+    "django_seed"
 ]
 
 

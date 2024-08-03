@@ -2,14 +2,12 @@ from django.contrib import admin
 from .models import Pressure_Sensor,Pressure_Reading
 import random
 import string
+from.forms import PressureSensorForm
 
 class Pressure_Sensor_Class(admin.ModelAdmin):
     list_display = ("id", "label", "installation_date", "latitude", "longitude")
     readonly_fields = ["serial_number"]
-
-
-
-
+    form = PressureSensorForm
 
     def save_model(self, *args, **kwargs):
         if not self.serial_number:

@@ -5,6 +5,11 @@ from django.db.models import Model
 from django.utils.dateparse import parse_date
 from django.core.exceptions import ValidationError
 from django.contrib.contenttypes.models import ContentType
+try:
+    from django.db.models import JSONField
+except ImportError:
+    # django < 3.1
+    from django.contrib.postgres.fields import JSONField
 
 
 class Pressure_Sensor(models.Model):
@@ -13,6 +18,7 @@ class Pressure_Sensor(models.Model):
     latitude = models.IntegerField(default=0)
     longitude = models.IntegerField(default=0)
     serial_number = models.CharField(max_length=200, unique=True)
+    configuration = JSONField(default=dict, blank=True, null=True)
 
     def clean(self):
         super().clean()
